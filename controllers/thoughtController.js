@@ -32,7 +32,14 @@ const thoughtController = {
             const user = await User.findByIdAndUpdate(req.body.userId, { $push: { thoughts: thought._id } }, { new: true });
             if (!user) {
                 res.status(404).json({ message: ' User not found!' });
-            }
+                return;
+            } 
+            res.status(200).json(thought);
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err);
         }
-    }
+       
+    },
+    
 }
