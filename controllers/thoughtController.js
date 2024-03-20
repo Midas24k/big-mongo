@@ -6,7 +6,7 @@ const thoughtController = {
         try {
             const thoughts = await Thought.find();
             res.json(thoughts);
-            
+
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
@@ -33,13 +33,45 @@ const thoughtController = {
             if (!user) {
                 res.status(404).json({ message: ' User not found!' });
                 return;
-            } 
+            }
             res.status(200).json(thought);
         } catch (err) {
             console.error(err);
             res.status(400).json(err);
         }
-       
+
     },
-    
-}
+    updateThought: async (res, req) => {
+        try {
+            const thought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            if (!thought) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+            }
+            res.json(thought);
+
+
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err);
+        }
+    },
+    deleteReactions: async (req, res) => {
+        try {
+            const thought = await Thought.findByIdAndDelete(req.params.thoughtId);
+            if (!thought) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+
+            }
+            thought.reactions.pull({ reactionsId: req.body.reactionsId });
+            await thought.save();
+            res.json(thought);
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err);
+        }
+    }
+};
+
+module.exports = thoughtController;
