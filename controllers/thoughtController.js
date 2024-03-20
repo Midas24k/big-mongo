@@ -1,7 +1,7 @@
 
 // Importing the Thought and User models
-const Thought = require('models/Thought.js');
-const User = require('models/User.js');
+const Thought = require('./models/Thought.js');
+const User = require('./models/User.js');
 
 // Defining the thoughtController object
 const thoughtController = {
