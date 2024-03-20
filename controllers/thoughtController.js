@@ -1,7 +1,7 @@
 
 // Importing the Thought and User models
-const Thought = require('./models/Thought.js');
-const User = require('./models/User.js');
+const Thought = require('../models/Thought.js');
+const User = require('../models/User.js');
 
 // Defining the thoughtController object
 const thoughtController = {
@@ -75,7 +75,7 @@ const thoughtController = {
         }
     },
     // Method to delete reactions from a thought
-    deleteReactions: async (req, res) => {
+    deleteReaction: async (req, res) => {
         try {
             // Delete the thought from the database using its ID
             const thought = await Thought.findByIdAndDelete(req.params.thoughtId);
