@@ -74,6 +74,46 @@ const thoughtController = {
             res.status(400).json(err);
         }
     },
+    createReaction: async (req,res) => {
+        try{
+        const thought = await Thought.findByIdAndUpdate(req.params.thoughtId, { $push: { reactions: req.body } }, { new: true });
+        if (!thought) {
+            res.status(404).json({ message: 'No thought found with this id!'});
+            return;
+        }
+        res.json(thought);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json(err);
+        
+    }
+        
+    },
+    deleteThought: async (res, req) => {
+        try {
+            // Delete the thought from the database using its ID
+            const thought = await Thought.findByIdAndDelete(req.params.id);
+            // If the thought doesn't exist, send a 404 response
+            if (!thought) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+            }
+            // Remove the thought from the user's thoughts array
+            const user = await User.findByIdAndUpdate(thought.userId, { $pull: { thoughts: thought._id } }, { new: true });
+            // If the user doesn't exist, send a 404 response
+            if (!user) {
+                res.status(404).json({ message: ' User not found!' });
+                return;
+            }
+            // Send the deleted thought as a response
+            res.json(thought);
+        } catch (err) {
+            // Log the error and send it as a response with status 400
+            console.error(err);
+            res.status(400).json(err);
+        }
+    },
+   
     // Method to delete reactions from a thought
     deleteReaction: async (req, res) => {
         try {
