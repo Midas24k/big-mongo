@@ -41,6 +41,7 @@ const userController = {
             // Create a new user with the request body
             const user = await User.create(req.body);
             // Send the new user as a response
+            console.log(user);
             res.status(200).json(user);
         } catch (err) {
             // Log the error and send it as a response

@@ -57,7 +57,7 @@ const thoughtController = {
         }
     },
     // Method to update a thought
-    updateThought: async (res, req) => {
+    updateThought: async (req, res) => {
         try {
             // Update the thought in the database using its ID and the request body
             const thought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -89,7 +89,7 @@ const thoughtController = {
     }
         
     },
-    deleteThought: async (res, req) => {
+    deleteThought: async (req, res) => {
         try {
             // Delete the thought from the database using its ID
             const thought = await Thought.findByIdAndDelete(req.params.id);
