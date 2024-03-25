@@ -8,9 +8,9 @@ const userController = {
     getAllUsers: async (req, res) => {
         try {
             // Find all users and populate their thoughts and friends
-            const users = await User.find().populate('thoughts').populate('friends');
+            const user = await User.find().populate('thoughts').populate('friends');
             // Send the users as a response
-            res.json(users);
+            res.json(user);
         } catch (err) {
             // Log the error and send it as a response
             console.error(err);
