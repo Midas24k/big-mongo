@@ -42,9 +42,9 @@ const thoughtController = {
             // Create a new thought in the database using the request body
             const thought = await Thought.create(req.body);
             // Add the new thought to the user's thoughts array
-            const user = await User.findByIdAndUpdate(req.body.userId, { $push: { thoughts: thought._id } }, { new: true });
+            const userName = await User.findByIdAndUpdate(req.body.userId, { $push: { thoughts: thought._id } }, { new: true });
             // If the user doesn't exist, send a 404 response
-            if (!user) {
+            if (!userName) {
                 res.status(404).json({ message: ' User not found!' });
                 return;
             }
