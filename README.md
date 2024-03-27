@@ -4,7 +4,7 @@
 
 ## Description:
 
-Backend MongoDB powered social network database
+Welcome to Challenge 18 NoSQL: Social Network API. This challenge focuses on the backend technology MongoDB, and gives an idea of practical application by building collections that will be used to power models through out the project. This was a very challenging project but very rewarding once it works.
 
 # Table of Contents
 
@@ -21,11 +21,24 @@ Roderick Hughey
 
 ## Installation:
 
-Thais requires Javascript Nodejs MongoDB
+This project requires: 
+Javascript 
+Nodejs 
+MongoDB
+Insomnia
+packages used:
+Mongoose
+Express
+Datejs
+optional:
+MongoDB Compass
+Tutorial can be viewed here : https://drive.google.com/file/d/1kuqZujZxyA4_UYElr4eM4vrA30810IY7/view
+
+GitHub Repo: https://github.com/Midas24k/big-mongo
 
 ## Usage:
 
-    Practice with backend technologies such as NOSQL and APIs
+    Practice with backend technologies such as NOSQL MongoDB and APIs
 
 ## Contributors:
 
